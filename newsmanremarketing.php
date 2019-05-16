@@ -753,7 +753,7 @@ class NewsmanRemarketing extends Module
 			if (($this->js_state) != 1 && ($backoffice == 0))
 			{
 				$controller_name = Tools::getValue('controller');
-				if ($controller_name != 'order')
+				if ($controller_name != 'order' && $controller_name != 'product')
 				{
 					$runjs_code .= '
 				<script type="text/javascript">

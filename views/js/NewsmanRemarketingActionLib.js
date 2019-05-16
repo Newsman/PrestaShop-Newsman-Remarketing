@@ -69,7 +69,7 @@ var NewsmanAnalyticEnhancedECommerce = {
 	addProductDetailView: function(Product) {
 		this.add(Product);
 		_nzm.run('ec:setAction', 'detail');
-		_nzm.run('send', 'event', 'UX', 'detail', 'Product Detail View',{'nonInteraction': 1});
+		_nzm.run('send', 'pageview', 'UX', 'detail', 'Product Detail View',{'nonInteraction': 1});
 	},
 
 	addToCart: function(Product) {
