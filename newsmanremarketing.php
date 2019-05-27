@@ -275,6 +275,12 @@ class NewsmanRemarketing extends Module
 
 		$ga_id = Configuration::get('GA_ACCOUNT_ID');
 
+		$controller_name = Tools::getValue('controller');
+
+		if (strpos($controller_name, 'Admin') !== false) {
+			return "";
+		}
+
 		$ga_snippet_head = "
 			<script type=\"text/javascript\">
 		var _nzm = _nzm || []; var _nzm_config = _nzm_config || []; _nzm_tracking_server = '" . self::$endpointHost . "';
@@ -753,6 +759,11 @@ class NewsmanRemarketing extends Module
 			if (($this->js_state) != 1 && ($backoffice == 0))
 			{
 				$controller_name = Tools::getValue('controller');
+
+				if (strpos($controller_name, 'Admin') !== false) {
+					return $runjs_code;
+				}
+
 				if ($controller_name != 'order' && $controller_name != 'product')
 				{
 					$runjs_code .= '
