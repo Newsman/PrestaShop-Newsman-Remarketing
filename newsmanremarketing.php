@@ -258,10 +258,10 @@ class NewsmanRemarketing extends Module
 		return $this->display(__FILE__, 'views/templates/admin/configuration.tpl') . $output;
 	}
 
-	public static $endpoint = "https://retargeting.newsmanapp.com/js/retargeting/track.js";
-	public static $endpointHost = "https://retargeting.newsmanapp.com";
-	//public static $endpoint = "https://bogdandev2.newsmanapp.com/js/retargeting/track.dev.js";
-	//public static $endpointHost = "https://bogdandev2.newsmanapp.com";
+	//public static $endpoint = "https://retargeting.newsmanapp.com/js/retargeting/track.js";
+	//public static $endpointHost = "https://retargeting.newsmanapp.com";
+	public static $endpoint = "https://bogdandev2.newsmanapp.com/js/retargeting/track.dev.js";
+	public static $endpointHost = "https://bogdandev2.newsmanapp.com";
 
 	protected function _getGoogleAnalyticsTag($back_office = false)
 	{
@@ -397,11 +397,11 @@ class NewsmanRemarketing extends Module
 			{
 				if ($gacart['quantity'] > 0)
 				{
-					$ga_scripts .= 'MBG.addToCart(' . Tools::jsonEncode($gacart) . ');';
+					//$ga_scripts .= 'MBG.addToCart(' . Tools::jsonEncode($gacart) . ');';
 				} elseif ($gacart['quantity'] < 0)
 				{
 					$gacart['quantity'] = abs($gacart['quantity']);
-					$ga_scripts .= 'MBG.removeFromCart(' . Tools::jsonEncode($gacart) . ');';
+					//$ga_scripts .= 'MBG.removeFromCart(' . Tools::jsonEncode($gacart) . ');';
 				}
 			}
 			unset($this->context->cookie->ga_cart);
@@ -666,6 +666,7 @@ class NewsmanRemarketing extends Module
 		foreach ($products as $product)
 			$js .= 'MBG.add(' . Tools::jsonEncode($product) . ",'',true);";
 
+		$js .= '_nzm.run(\'send\', \'pageview\');';
 		return $js;
 	}
 
@@ -728,7 +729,12 @@ class NewsmanRemarketing extends Module
 
 			if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) > 0)
 			{
-				$js .= $this->addProductClickByHttpReferal(array($ga_product));
+				if($this->context->cookie->prodclick != $ga_product["name"])
+				{
+					$this->context->cookie->prodclick = $ga_product["name"];
+
+					$js .= $this->addProductClickByHttpReferal(array($ga_product));
+				}
 			}
 
 			$this->js_state = 1;
@@ -768,7 +774,7 @@ class NewsmanRemarketing extends Module
 				{
 					$runjs_code .= '
 				<script type="text/javascript">
-				_nzm.run(\'send\', \'pageview\');
+				//_nzm.run(\'send\', \'pageview\');
 				</script>';
 				}
 			}

@@ -21,7 +21,7 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0
  */
 
-class NewsmanAjaxModuleFrontController extends ModuleFrontController
+class NewsmanRemarketingAjaxModuleFrontController extends ModuleFrontController
 {
 	public $ssl = true;
 	/*
