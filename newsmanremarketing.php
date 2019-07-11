@@ -258,10 +258,10 @@ class NewsmanRemarketing extends Module
 		return $this->display(__FILE__, 'views/templates/admin/configuration.tpl') . $output;
 	}
 
-	//public static $endpoint = "https://retargeting.newsmanapp.com/js/retargeting/track.js";
-	//public static $endpointHost = "https://retargeting.newsmanapp.com";
-	public static $endpoint = "https://bogdandev2.newsmanapp.com/js/retargeting/track.dev.js";
-	public static $endpointHost = "https://bogdandev2.newsmanapp.com";
+	public static $endpoint = "https://retargeting.newsmanapp.com/js/retargeting/track.js";
+	public static $endpointHost = "https://retargeting.newsmanapp.com";
+	//public static $endpoint = "https://bogdandev2.newsmanapp.com/js/retargeting/track.dev.js";
+	//public static $endpointHost = "https://bogdandev2.newsmanapp.com";
 
 	protected function _getGoogleAnalyticsTag($back_office = false)
 	{
